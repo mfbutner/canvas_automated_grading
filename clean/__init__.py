@@ -1,9 +1,11 @@
 import shutil
 import pathlib
+
 path = str(pathlib.Path(__file__).parents[1])
 
+
 class Clean:
-    def __init__(self,only_remove_flag=False):
+    def __init__(self, only_remove_flag=False):
         if not only_remove_flag:
             self.remove_and_create(f'{path}/manual_inspections')
             self.remove_and_create(f'{path}/submissions')
@@ -20,13 +22,13 @@ class Clean:
             self.remove(f'{path}/final_grades')
             self.remove(f'{path}/final_tags')
 
-    def remove(self,path):
+    def remove(self, path):
         try:
             shutil.rmtree(path)
         except:
             pass
-    
-    def remove_and_create(self,path):
+
+    def remove_and_create(self, path):
         try:
             shutil.rmtree(path)
             f = path.split('/')[-1]
@@ -37,3 +39,7 @@ class Clean:
             print(f'Creating {f} folder')
             pathlib.Path(path).mkdir(parents=True, exist_ok=True)
             pass
+
+
+if __name__ == '__main__':
+    Clean()
